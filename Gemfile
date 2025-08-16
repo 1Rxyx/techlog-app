@@ -51,6 +51,10 @@ group :development, :test do
 
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem 'rubocop-rails-omakase', require: false
+
+  gem 'rspec-rails'
+
+  gem 'factory_bot_rails'
 end
 
 group :development do
@@ -60,6 +64,7 @@ group :development do
   gem 'rubocop-rails', require: false # 追加
   gem 'rubocop-rspec' # 追加
   gem 'web-console'
+  gem 'spring-commands-rspec'
 end
 
 group :test do
