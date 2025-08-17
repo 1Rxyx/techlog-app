@@ -44,9 +44,6 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   
   config.include FactoryBot::Syntax::Methods
-  config.before(:suite) do
-    FactoryBot.find_definitions
-  end
 
   config.include Devise::Test::IntegrationHelpers, type: :system
 end
