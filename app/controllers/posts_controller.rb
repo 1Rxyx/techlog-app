@@ -1,8 +1,9 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create] # ログインしているかどうかを判断
  
-  def index
-  end
+def index
+  @posts = Post.limit(10).order(created_at: :desc)
+end
  
   def new
     @post = Post.new # 新規投稿用のインスタンス変数を用意
@@ -14,7 +15,7 @@ class PostsController < ApplicationController
  
     if @post.save
       flash[:notice] = '投稿しました' # 成功時のフラッシュメッセージ
-      redirect_to root_path # 一時的にトップページへリダイレクト(後に修正)
+      redirect_to posts_path # トップページから投稿一覧ページへ変更
     else
       flash[:alert] = '投稿に失敗しました' # 失敗時のフラッシュメッセージ
       render :new # 投稿画面を再表示
