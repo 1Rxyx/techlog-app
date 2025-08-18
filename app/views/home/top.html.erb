@@ -1,4 +1,108 @@
-<div>
-  <h1 class="font-bold text-4xl text-red-500">Home#top</h1>
-  <p>Find me in app/views/home/top.html.erb</p>
+<div class="w-full max-w-6xl mx-auto">
+  <!-- ヒーローセクション -->
+  <div class="py-12 md:py-20 px-4">
+    <div class="text-center mb-8">
+      <span class="inline-block bg-blue-100 text-blue-800 rounded-full px-4 py-1 text-sm mb-4">
+        プログラミング学習の記録を始めましょう。
+      </span>
+      <h1 class="text-6xl font-bold tracking-tight text-gray-900 mb-6">TechLog</h1>
+      <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+        TechLogは、あなたのプログラミング学習の旅を記録するためのシンプルなアプリケーションです。
+        日々の学習内容を記録し、振り返ることで、着実な成長を実感しましょう。
+      </p>
+    </div>
+ 
+    <div class="flex flex-wrap justify-center gap-4 mt-10">
+      <% if user_signed_in? %>
+        <%= link_to "学習ログを記録する", new_post_path, class: "inline-block bg-indigo-600 text-white px-6 py-3 rounded-md font-medium hover:bg-indigo-700 transition-colors" %>
+      <% else %>
+        <%= link_to "ユーザー登録", new_user_registration_path, class: "inline-block bg-indigo-600 text-white px-6 py-3 rounded-md font-medium hover:bg-indigo-700 transition-colors" %>
+      <% end %>
+      <%= link_to "学習ログを見る", posts_path, class: "inline-block bg-white text-indigo-600 border border-indigo-600 px-6 py-3 rounded-md font-medium hover:bg-indigo-50 transition-colors" %>
+    </div>
+  </div>
+ 
+  <!-- 機能紹介セクション -->
+  <div class="py-16 px-4 bg-white rounded-xl shadow-sm">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl font-bold text-gray-900">TechLogでできること</h2>
+      <p class="mt-4 text-lg text-gray-600">
+        プログラミング学習をより効果的にするための機能をご紹介します
+      </p>
+    </div>
+ 
+    <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+      <div class="bg-blue-50 p-6 rounded-lg">
+        <div class="flex items-center mb-4">
+          <div class="bg-indigo-600 p-2 rounded-lg mr-4">
+            <svg class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold">学習内容を記録</h3>
+        </div>
+        <p class="text-gray-600">
+          日々の学習内容を簡単に記録。何を学んだのか、どんな課題に取り組んだのかを忘れることなく保存できます。
+        </p>
+      </div>
+ 
+      <div class="bg-blue-50 p-6 rounded-lg">
+        <div class="flex items-center mb-4">
+          <div class="bg-indigo-600 p-2 rounded-lg mr-4">
+            <svg class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold">振り返りと成長</h3>
+        </div>
+        <p class="text-gray-600">
+          過去の学習記録を振り返ることで、自分の成長を実感できます。学習の軌跡を追うことで、モチベーション維持にも繋がります。
+        </p>
+      </div>
+ 
+      <div class="bg-blue-50 p-6 rounded-lg">
+        <div class="flex items-center mb-4">
+          <div class="bg-indigo-600 p-2 rounded-lg mr-4">
+            <svg class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold">シンプルで使いやすい</h3>
+        </div>
+        <p class="text-gray-600">
+          複雑な操作は不要。タイトルと内容を入力するだけで、すぐに学習ログを記録できます。
+        </p>
+      </div>
+ 
+      <div class="bg-blue-50 p-6 rounded-lg">
+        <div class="flex items-center mb-4">
+          <div class="bg-indigo-600 p-2 rounded-lg mr-4">
+            <svg class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold">いつでもどこでも</h3>
+        </div>
+        <p class="text-gray-600">
+          スマートフォンやタブレットからもアクセス可能。いつでもどこでも学習記録を確認・追加できます。
+        </p>
+      </div>
+    </div>
+  </div>
+ 
+  <!-- CTAセクション -->
+  <div class="bg-indigo-600 text-white rounded-xl my-16 p-8 text-center">
+    <h2 class="text-3xl font-bold mb-4">今日から学習を記録</h2>
+    <p class="text-lg text-indigo-100 mb-8 max-w-2xl mx-auto">
+      プログラミング学習の記録を始めて、着実に成長していきましょう。
+      今日学んだことが、明日の自分の力になります。
+    </p>
+    <div>
+      <% if user_signed_in? %>
+        <%= link_to "学習ログを記録する", new_post_path, class: "inline-block bg-white text-indigo-600 px-6 py-3 rounded-md font-medium hover:bg-indigo-50 transition-colors" %>
+      <% else %>
+        <%= link_to "ユーザー登録", new_user_registration_path, class: "inline-block bg-white text-indigo-600 px-6 py-3 rounded-md font-medium hover:bg-indigo-50 transition-colors" %>
+      <% end %>
+    </div>
+  </div>
 </div>
