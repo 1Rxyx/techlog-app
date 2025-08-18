@@ -2,11 +2,11 @@ require 'rails_helper'
  
 RSpec.describe 'Home', type: :system do
   before do
-    driven_by :rack_test
+    driven_by(:rack_test)
   end
  
-  describe 'トップページアクセスの検証' do
-    it 'Home#top という文字列が表示される' do
+  describe 'トップページの検証' do
+    it 'Home#topという文字列が表示される' do
       visit '/'
  
       expect(page).to have_content('Home#top')
@@ -25,17 +25,20 @@ RSpec.describe 'Home', type: :system do
         expect(page).to have_link('ログイン', href: '/users/sign_in')
       end
  
+      it 'ログ投稿リンクを表示しない' do # 追加
+        expect(page).not_to have_link('ログ投稿', href: '/posts/new')
+      end
+ 
       it 'ログアウトリンクは表示しない' do
         expect(page).not_to have_content('ログアウト')
       end
     end
  
     context 'ログインしている場合' do
-      # Factory Botを使って、テスト用のユーザーデータをデータベースに作成
       before do
         user = create(:user) # ログイン用のユーザーを作成
-        sign_in user # 作成したユーザーでログイン(Deviseの認証ライブラリが提供するヘルパーメソッド)
-        visit '/' # ログイン後にトップページにアクセス
+        sign_in user # 作成したユーザーでログイン
+        visit '/'
       end
  
       it 'ユーザー登録リンクは表示しない' do
@@ -44,6 +47,10 @@ RSpec.describe 'Home', type: :system do
  
       it 'ログインリンクは表示しない' do
         expect(page).not_to have_link('ログイン', href: '/users/sign_in')
+      end
+ 
+      it 'ログ投稿リンクを表示する' do # 追加
+        expect(page).to have_link('ログ投稿', href: '/posts/new')
       end
  
       it 'ログアウトリンクを表示する' do
