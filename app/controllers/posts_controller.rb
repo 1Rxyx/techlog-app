@@ -1,9 +1,9 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create] # ログインしているかどうかを判断
  
-def index
-  @posts = Post.limit(10).order(created_at: :desc)
-end
+  def index
+    @posts = Post.limit(10).order(created_at: :desc)
+  end
  
   def new
     @post = Post.new # 新規投稿用のインスタンス変数を用意
@@ -26,21 +26,20 @@ end
     @post = Post.find_by(id: params[:id])
   end
  
-def destroy
-  # 削除対象の投稿を取得
-  post = Post.find_by(id: params[:id])
+  def destroy
+    # 削除対象の投稿を取得
+    post = Post.find_by(id: params[:id])
  
-  # 投稿者とログインユーザーが一致するかを確認
-  if post.user == current_user
-    post.destroy
-    flash[:notice] = '投稿が削除されました'
-  end
+    # 投稿者とログインユーザーが一致するかを確認
+    if post.user == current_user
+      post.destroy
+      flash[:notice] = '投稿が削除されました'
+    end
  
   # 投稿一覧ページにリダイレクト
   redirect_to posts_path
-end
+  end
 
- 
   private
  
   # ストロングパラメータで許可するカラムを指定

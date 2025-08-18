@@ -128,4 +128,28 @@ describe 'Post', type: :system do
     end
   end
   end
+
+  describe 'ユーザーページの検証' do
+    before do
+      @user = create(:user)
+      @post = create(:post, title: 'テスト投稿', content: 'ユーザーページ表示テスト', user: @user)
+ 
+      visit "/users/#{@user.id}" # ユーザー詳細ページにアクセス
+    end
+ 
+    it 'ユーザー情報が表示される' do
+      expect(page).to have_content(@user.nickname) # ニックネームが表示されていることを確認
+      expect(page).to have_content("投稿数: 1件") # 投稿数が表示されていることを確認
+    end
+ 
+    it '投稿一覧が表示される' do
+      expect(page).to have_content('テスト投稿') # 投稿のタイトルが表示されていることを確認
+      expect(page).to have_content('ユーザーページ表示テスト') # 投稿の内容が表示されていることを確認
+    end
+ 
+    it '投稿の詳細ページへのリンクが機能する' do
+      click_link 'テスト投稿' # 投稿のタイトルをクリック
+      expect(current_path).to eq("/posts/#{@post.id}") # 投稿詳細ページに遷移していることを確認
+    end
+  end
 end
